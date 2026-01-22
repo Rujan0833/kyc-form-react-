@@ -7,31 +7,46 @@ const PaperHeader: React.FC = () => {
 
     return (
         <div className="w-full mb-6">
-            {/* ... abbreviated top sections ... */}
+            {/* Top Navigation/Section Titles (Faint) */}
+            <div className="flex justify-between items-center text-[9px] text-gray-400 mb-2 opacity-40">
+                <span>CLIENT & ADDRESS</span>
+                <span>TRANSACTION & GUARDIAN</span>
+                <span>DECLARATIONS</span>
+                <span>FAMILY & BANK</span>
+            </div>
+
+            {/* Main Header Section */}
             <div className="flex justify-between items-start mb-4">
                 {/* Left: Logo and Primary Branding */}
-                <div className="flex gap-4 items-center">
+                <div className="flex gap-4 items-start flex-1">
                     <img
                         src="/logo.png"
                         alt="RBB Logo"
                         style={{ width: '80px', height: 'auto', display: 'block', flexShrink: 0 }}
                         className="object-contain flex-shrink-0"
                     />
-                    <div className="border-l-2 border-[#da291c] pl-4 py-1">
-                        <h1 className="text-xl font-bold text-blue-900 leading-tight">
-                            आर.वि.वि. सेक्युरिटीज कम्पनी लि.
-                        </h1>
-                        <h2 className="text-lg font-bold text-blue-900">
-                            R.B.B. SECURITIES COMPANY LTD.
-                        </h2>
-                        <p className="text-[10px] text-gray-600 italic">
-                            A Subsidiary Company of Rastriya Banijya Bank Ltd.
-                        </p>
+                    <div className="flex-1">
+                        <div className="border-l-2 border-[#da291c] pl-4 py-1">
+                            <h1 className="text-xl font-bold text-blue-900 leading-tight">
+                                आर.वि.वि. सेक्युरिटीज कम्पनी लि.
+                            </h1>
+                            <h2 className="text-lg font-bold text-blue-900">
+                                R.B.B. SECURITIES COMPANY LTD.
+                            </h2>
+                            <p className="text-[10px] text-gray-600 italic">
+                                A Subsidiary Company of Rastriya Banijya Bank Ltd.
+                            </p>
+                        </div>
+                        {/* Contact Info below company name */}
+                        <div className="text-[10px] text-gray-700 mt-2 pl-4">
+                            <span>टेलिफोन नं: ०१-५९२१८९५, ०१-५९२१८९६</span>
+                            <span className="ml-4">Email Address: securitiesrbb@gmail.com</span>
+                        </div>
                     </div>
                 </div>
 
-                {/* Right: Annex and Photo Box */}
-                <div className="flex flex-col items-end gap-2">
+                {/* Right: Schedule Reference and Photo Box */}
+                <div className="flex flex-col items-end gap-2 ml-4">
                     <div className="text-right">
                         <p className="text-xs font-bold font-serif">अनुसूची-१२</p>
                         <p className="text-[10px]">(नियम २९ को उपनियम (१) संग सम्बन्धित)</p>
@@ -42,12 +57,6 @@ const PaperHeader: React.FC = () => {
                         </p>
                     </div>
                 </div>
-            </div>
-
-            {/* Center Contact Info */}
-            <div className="text-center text-[10px] text-gray-700 border-t border-b border-gray-300 py-1 mb-4 flex justify-center gap-8 font-medium">
-                <span>टेलिफोन नं: ०१-५९२१८९५, ०१-५९२१८९६</span>
-                <span>Email Address: securitiesrbb@gmail.com</span>
             </div>
 
             {/* Main Section Header: Natural Person (Blue Bar) */}

@@ -17,6 +17,13 @@ const TransactionGuardianSection: React.FC<TransactionGuardianSectionProps> = ({
 
     return (
         <div className="animate-in fade-in duration-500">
+            <div
+                className="bg-[#00468b] py-1.5 px-4 rounded-sm text-center mb-4 shadow-sm border border-blue-900"
+                style={{ backgroundColor: '#00468b', color: 'white' }}
+            >
+                <h3 className="text-base font-bold leading-tight" style={{ color: 'white' }}>कारोबार र संरक्षकको विवरण</h3>
+                <p className="text-[11px] font-bold uppercase opacity-90" style={{ color: 'white' }}>Transaction and Guardian Details</p>
+            </div>
 
             {/* SECTION: TRANSACTION RELATED ADDITIONAL INFO */}
             <div className="border-l border-t border-gray-400 mb-6">
@@ -76,20 +83,20 @@ const TransactionGuardianSection: React.FC<TransactionGuardianSectionProps> = ({
                     <div className="col-span-10">
                         <div className="grid grid-cols-10">
                             <GridTableCell labelNe="नाम/थर" labelEn="Name/Surname : (In Block Letter)" colSpan={3} />
-                            <GridTableCell colSpan={7} noBorderRight>
-                                <CharacterInput length={30} />
+                            <GridTableCell colSpan={7} noBorderRight className="p-0 flex items-center">
+                                <input type="text" className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
                             </GridTableCell>
                         </div>
                         <div className="grid grid-cols-10">
                             <GridTableCell labelNe="निवेदक सँगको सम्बन्ध :" labelEn="Relationship with application :" colSpan={3} />
-                            <GridTableCell colSpan={7} noBorderRight>
-                                <input type="text" className="w-full h-full border-none focus:outline-none px-2 text-xs" />
+                            <GridTableCell colSpan={7} noBorderRight className="p-0 flex items-center">
+                                <input type="text" className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
                             </GridTableCell>
                         </div>
                         <div className="grid grid-cols-10">
                             <GridTableCell labelNe="पत्राचार ठेगाना :" labelEn="Correspondence Address :" colSpan={3} />
-                            <GridTableCell colSpan={7} noBorderRight>
-                                <CharacterInput length={30} />
+                            <GridTableCell colSpan={7} noBorderRight className="p-0 flex items-center">
+                                <input type="text" className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
                             </GridTableCell>
                         </div>
                     </div>

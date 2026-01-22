@@ -16,19 +16,26 @@ const FamilyOccupationSection: React.FC<FamilyOccupationSectionProps> = ({ onNex
     const { register } = useFormContext<KYCFormData>();
 
     const familyMembers = [
-        { ne: 'बाजेको नाम', en: "Grand Father's Name" },
-        { ne: 'बुवाको नाम', en: "Father's Name" },
-        { ne: 'आमाको नाम', en: "Mother's Name" },
-        { ne: 'पति/पत्नीको नाम', en: "Spouse's Name" },
-        { ne: 'छोराको नाम', en: "Son's Name" },
-        { ne: 'छोरीको नाम (अविवाहित)', en: "Daughter's Name" },
-        { ne: 'बुहारीको नाम', en: "Daughter in-Law's Name" },
-        { ne: 'ससुराको नाम', en: "Father in Law's Name" },
-        { ne: 'सासुको नाम', en: "Mother in Law's Name" },
+        { ne: 'बाजेको नाम', en: "Grand Father's Name", field: 'grandFatherName' },
+        { ne: 'बुवाको नाम', en: "Father's Name", field: 'fatherName' },
+        { ne: 'आमाको नाम', en: "Mother's Name", field: 'motherName' },
+        { ne: 'पति/पत्नीको नाम', en: "Spouse's Name", field: 'spouseName' },
+        { ne: 'छोराको नाम', en: "Son's Name", field: 'sonName' },
+        { ne: 'छोरीको नाम (अविवाहित)', en: "Daughter's Name", field: 'daughterName' },
+        { ne: 'बुहारीको नाम', en: "Daughter in-Law's Name", field: 'daughterInLawName' },
+        { ne: 'ससुराको नाम', en: "Father in Law's Name", field: 'fatherInLawName' },
+        { ne: 'सासुको नाम', en: "Mother in Law's Name", field: 'motherInLawName' },
     ];
 
     return (
         <div className="animate-in fade-in duration-500">
+            <div
+                className="bg-[#00468b] py-1.5 px-4 rounded-sm text-center mb-4 shadow-sm border border-blue-900"
+                style={{ backgroundColor: '#00468b', color: 'white' }}
+            >
+                <h3 className="text-base font-bold leading-tight" style={{ color: 'white' }}>परिवारका सदस्यहरूको विवरण र पेशागत विवरण</h3>
+                <p className="text-[11px] font-bold uppercase opacity-90" style={{ color: 'white' }}>Family Members and Occupation Details</p>
+            </div>
 
             {/* SECTION: FAMILY MEMBERS */}
             <div className="border-l border-t border-gray-400 mb-6">
@@ -43,8 +50,8 @@ const FamilyOccupationSection: React.FC<FamilyOccupationSectionProps> = ({ onNex
                 {familyMembers.map((member, idx) => (
                     <div key={idx} className="grid grid-cols-12">
                         <GridTableCell labelNe={member.ne} labelEn={`${member.en} (In Block Letter)`} colSpan={4} />
-                        <GridTableCell colSpan={8} noBorderRight className="p-0">
-                            <CharacterInput length={22} />
+                        <GridTableCell colSpan={8} noBorderRight className="p-0 flex items-center">
+                            <input {...register(`familyDetails.${member.field}`)} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
                         </GridTableCell>
                     </div>
                 ))}
@@ -76,15 +83,15 @@ const FamilyOccupationSection: React.FC<FamilyOccupationSectionProps> = ({ onNex
 
                 <div className="grid grid-cols-12">
                     <GridTableCell labelNe="बैंक खाता नम्बर" labelEn="Bank Account No:" colSpan={3} />
-                    <GridTableCell colSpan={9} noBorderRight>
-                        <CharacterInput length={16} />
+                    <GridTableCell colSpan={9} noBorderRight className="p-0 flex items-center">
+                        <input {...register('bankDetails.accountNumber')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
                     </GridTableCell>
                 </div>
 
                 <div className="grid grid-cols-12">
                     <GridTableCell labelNe="बैंक खाता भएको बैंकको नाम र ठेगाना" labelEn="Name & Adress of Bank" colSpan={3} />
-                    <GridTableCell colSpan={9} noBorderRight>
-                        <input type="text" className="w-full h-full border-none focus:outline-none px-2 text-xs" />
+                    <GridTableCell colSpan={9} noBorderRight className="p-0 flex items-center">
+                        <input {...register('bankDetails.bankName')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
                     </GridTableCell>
                 </div>
             </div>

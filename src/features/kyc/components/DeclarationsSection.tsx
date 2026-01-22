@@ -24,6 +24,13 @@ const DeclarationsSection: React.FC<DeclarationsSectionProps> = ({ onNext, onPre
 
     return (
         <div className="animate-in fade-in duration-500">
+            <div
+                className="bg-[#00468b] py-1.5 px-4 rounded-sm text-center mb-4 shadow-sm border border-blue-900"
+                style={{ backgroundColor: '#00468b', color: 'white' }}
+            >
+                <h3 className="text-base font-bold leading-tight" style={{ color: 'white' }}>घोषणा र थप विवरण</h3>
+                <p className="text-[11px] font-bold uppercase opacity-90" style={{ color: 'white' }}>Declarations and Additional Information</p>
+            </div>
 
             {/* SECTION: AML/KYC QUESTIONS */}
             <div className="border-l border-t border-gray-400 mb-6 font-medium">

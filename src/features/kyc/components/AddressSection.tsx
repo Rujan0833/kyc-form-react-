@@ -21,11 +21,13 @@ const AddressSection: React.FC<AddressSectionProps> = ({ onNext, onPrev }) => {
 
     return (
         <div className="animate-in fade-in slide-in-from-right-4 duration-500">
-            <SectionHeader
-                titleKey="steps.address"
-                subtitleKey="subtitle"
-                stepIndicator="Step 2 of 5"
-            />
+            <div
+                className="bg-[#00468b] py-1.5 px-4 rounded-sm text-center mb-4 shadow-sm border border-blue-900"
+                style={{ backgroundColor: '#00468b', color: 'white' }}
+            >
+                <h3 className="text-base font-bold leading-tight" style={{ color: 'white' }}>ठेगाना विवरण</h3>
+                <p className="text-[11px] font-bold uppercase opacity-90" style={{ color: 'white' }}>Address Details</p>
+            </div>
 
             <div className="space-y-8">
                 {/* Current Address */}
