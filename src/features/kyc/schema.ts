@@ -4,6 +4,7 @@ export const kycSchema = z.object({
     personalDetails: z.object({
         fullName: z.string().min(3, 'Full name must be at least 3 characters'),
         dob: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid date format'),
+        dobBS: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid date format').optional(),
         gender: z.enum(['male', 'female', 'others']),
         nationality: z.string().min(1, 'Nationality is required'),
         citizenshipNo: z.string().min(1, 'Citizenship No. is required'),

@@ -63,13 +63,55 @@ const PersonalDetailsSection: React.FC<PersonalDetailsSectionProps> = ({ onNext 
                 </div>
 
                 {/* Row 2: Date of Birth */}
-                <div className="grid grid-cols-12">
+                <div className="grid grid-cols-12 min-h-10">
                     <GridTableCell labelNe="जन्म मिति" labelEn="Date of Birth" colSpan={3} />
-                    <GridTableCell labelNe="बि. सं. :" labelEn="B.S. :" colSpan={4} labelPosition="side">
-                        <CharacterInput length={10} />
+                    <GridTableCell labelNe="बि. सं. :" labelEn="B.S. :" colSpan={4} labelPosition="side" className="p-0">
+                        <Controller
+                            name="personalDetails.dobBS"
+                            control={control}
+                            render={({ field }) => (
+                                <input
+                                    type="text"
+                                    value={field.value || ''}
+                                    onChange={(e) => {
+                                        const raw = e.target.value.replace(/\D/g, '').slice(0, 8);
+                                        let formatted = raw;
+                                        if (raw.length > 4) {
+                                            formatted = raw.slice(0, 4) + '-' + raw.slice(4);
+                                        }
+                                        if (raw.length > 6) {
+                                            formatted = raw.slice(0, 4) + '-' + raw.slice(4, 6) + '-' + raw.slice(6);
+                                        }
+                                        field.onChange({ target: { value: formatted } });
+                                    }}
+                                    className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none max-w-24"
+                                />
+                            )}
+                        />
                     </GridTableCell>
-                    <GridTableCell labelNe="ई. सं. :" labelEn="A.D. :" colSpan={5} noBorderRight labelPosition="side">
-                        <CharacterInput length={10} />
+                    <GridTableCell labelNe="ई. सं. :" labelEn="A.D. :" colSpan={5} noBorderRight labelPosition="side" className="p-0">
+                        <Controller
+                            name="personalDetails.dob"
+                            control={control}
+                            render={({ field }) => (
+                                <input
+                                    type="text"
+                                    value={field.value || ''}
+                                    onChange={(e) => {
+                                        const raw = e.target.value.replace(/\D/g, '').slice(0, 8);
+                                        let formatted = raw;
+                                        if (raw.length > 4) {
+                                            formatted = raw.slice(0, 4) + '-' + raw.slice(4);
+                                        }
+                                        if (raw.length > 6) {
+                                            formatted = raw.slice(0, 4) + '-' + raw.slice(4, 6) + '-' + raw.slice(6);
+                                        }
+                                        field.onChange({ target: { value: formatted } });
+                                    }}
+                                    className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none max-w-24"
+                                />
+                            )}
+                        />
                     </GridTableCell>
                 </div>
 

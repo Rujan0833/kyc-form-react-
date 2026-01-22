@@ -38,7 +38,8 @@ const GridTableCell: React.FC<GridTableCellProps> = ({
                 gridRow: rowSpan > 1 ? `span ${rowSpan}` : undefined,
             }}
             className={cn(
-                'p-1.5 flex flex-col justify-start border-gray-400',
+                'p-1.5 flex justify-start border-gray-400',
+                labelPosition === 'side' ? 'flex-row items-center' : 'flex-col',
                 !noBorderRight && 'border-r',
                 !noBorderBottom && 'border-b',
                 isHeader && 'bg-[#00468b] text-white !text-white font-bold text-xs py-1.5',
@@ -47,8 +48,8 @@ const GridTableCell: React.FC<GridTableCellProps> = ({
         >
             {(labelNe || labelEn) && (
                 <div className={cn(
-                    'flex mb-1',
-                    labelPosition === 'top' ? 'flex-col' : 'flex-row gap-2 items-center'
+                    'flex',
+                    labelPosition === 'top' ? 'flex-col mb-1' : 'flex-row gap-2 items-center'
                 )}>
                     {labelNe && (
                         <span
