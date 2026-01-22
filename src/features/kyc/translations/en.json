@@ -1,0 +1,26 @@
+{
+    "kyc": {
+        "title": "Account Opening Form (KYC)",
+        "subtitle": "Details of Natural Person",
+        "steps": {
+            "personal": "Personal Details",
+            "address": "Address Details",
+            "family": "Family & Occupation",
+            "bank": "Bank & Financials",
+            "documents": "Documents & declaration"
+        },
+        "fields": {
+            "fullName": "Full Name (In Block Letters)",
+            "dob": "Date of Birth",
+            "gender": "Gender",
+            "nationality": "Nationality",
+            "citizenshipNo": "Citizenship No.",
+            "pan": "PAN No."
+        },
+        "actions": {
+            "next": "Next",
+            "previous": "Previous",
+            "submit": "Submit"
+        }
+    }
+}
