@@ -39,11 +39,13 @@ const FormField = React.forwardRef<HTMLInputElement | HTMLSelectElement | HTMLTe
                     )}
                     {...props}
                 >
-                    {as === 'select' && options?.map((opt) => (
-                        <option key={opt.value} value={opt.value}>
-                            {opt.label}
-                        </option>
-                    ))}
+                    {as === 'select' ? (
+                        options?.map((opt) => (
+                            <option key={opt.value} value={opt.value}>
+                                {opt.label}
+                            </option>
+                        ))
+                    ) : undefined}
                 </Component>
 
                 {error ? (

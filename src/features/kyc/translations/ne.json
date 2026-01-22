@@ -13,9 +13,26 @@
             "fullName": "पूरा नाम (ठूला अक्षरमा)",
             "dob": "जन्म मिति",
             "gender": "लिङ्ग",
+            "gender_options": {
+                "male": "पुरुष",
+                "female": "महिला",
+                "others": "अन्य"
+            },
             "nationality": "राष्ट्रियता",
             "citizenshipNo": "नागरिकता नम्बर",
-            "pan": "स्थायी लेखा नं (PAN)"
+            "pan": "स्थायी लेखा नं (PAN)",
+            "address": {
+                "current": {
+                    "country": "देश",
+                    "province": "प्रदेश",
+                    "district": "जिल्ला",
+                    "municipality": "गा.पा / न.पा / उ.म.न.पा / म.न.पा",
+                    "wardNo": "वडा नं",
+                    "tole": "टोल",
+                    "mobileNo": "मोबाइल नं.",
+                    "email": "ईमेल"
+                }
+            }
         },
         "actions": {
             "next": "अर्को",

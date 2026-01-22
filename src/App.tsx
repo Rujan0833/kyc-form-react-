@@ -4,14 +4,16 @@ import { useQuery } from '@tanstack/react-query';
 import { FormLayout } from './components/layout/FormLayout';
 import { StepProgress } from './features/kyc/components/StepProgress';
 import { PersonalDetailsSection } from './features/kyc/components/PersonalDetailsSection';
-import { AddressSection } from './features/kyc/components/AddressSection';
+import { TransactionGuardianSection } from './features/kyc/components/TransactionGuardianSection';
+import { DeclarationsSection } from './features/kyc/components/DeclarationsSection';
+import { FamilyOccupationSection } from './features/kyc/components/FamilyOccupationSection';
 import { useKYCForm } from './features/kyc/hooks/useKYCForm';
 import { fetchKYCData } from './features/kyc/services/api';
 import { transformApiToForm } from './features/kyc/mappers';
 import { FormSectionSkeleton } from './components/ui/LoadingSkeleton';
 import { ErrorBoundary } from './components/ui/ErrorBoundary';
 
-const STEPS = ['Personal', 'Address', 'Family', 'Bank', 'Review'];
+const STEPS = ['Client & Address', 'Transaction & Guardian', 'Declarations', 'Family & Bank'];
 
 const App: React.FC = () => {
   const { form, currentStep, nextStep, prevStep } = useKYCForm();
@@ -37,7 +39,9 @@ const App: React.FC = () => {
     if (currentStep === 0) {
       fieldsToValidate = ['personalDetails'];
     } else if (currentStep === 1) {
-      fieldsToValidate = ['address'];
+      // Transaction & Guardian fields
+    } else if (currentStep === 3) {
+      fieldsToValidate = ['familyDetails', 'bankDetails', 'occupation'];
     }
 
     await nextStep(fieldsToValidate);
@@ -51,13 +55,19 @@ const App: React.FC = () => {
       case 0:
         return <PersonalDetailsSection onNext={handleNext} />;
       case 1:
-        return <AddressSection onNext={handleNext} onPrev={prevStep} />;
+        return <TransactionGuardianSection onNext={handleNext} onPrev={prevStep} />;
+      case 2:
+        return <DeclarationsSection onNext={handleNext} onPrev={prevStep} />;
+      case 3:
+        return <FamilyOccupationSection onNext={handleNext} onPrev={prevStep} />;
       default:
         return (
-          <div className="text-center py-20">
-            <h2 className="text-2xl font-bold text-gray-900">Step {currentStep + 1} Under Development</h2>
-            <p className="text-gray-500 mt-2">The architecture is ready to scale these sections next.</p>
-            <button onClick={prevStep} className="mt-8 text-blue-600 font-semibold">Go Back</button>
+          <div className="text-center py-20 min-h-[500px] flex flex-col justify-center">
+            <h2 className="text-2xl font-bold text-[#00468b]">All Steps Complete</h2>
+            <p className="text-gray-500 mt-2 italic">Thank you for completing the KYC form.</p>
+            <button onClick={prevStep} className="mt-8 text-[#00468b] font-bold border-b border-[#00468b] w-fit mx-auto">
+              अघिल्लो पृष्ठ (Previous Page)
+            </button>
           </div>
         );
     }

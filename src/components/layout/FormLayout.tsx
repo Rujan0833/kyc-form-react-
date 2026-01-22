@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Globe, ShieldCheck } from 'lucide-react';
+import { Globe } from 'lucide-react';
 import { Button } from '../ui/Button';
 
 interface FormLayoutProps {
@@ -16,53 +16,36 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children }) => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col">
-            {/* Header */}
-            <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                            R
-                        </div>
-                        <div>
-                            <h1 className="text-sm font-bold text-gray-900 leading-tight">
-                                R.B.B. SECURITIES
-                            </h1>
-                            <p className="text-[10px] text-gray-500 font-medium">COMPANY LTD.</p>
-                        </div>
-                    </div>
+        <div className="min-h-screen bg-gray-200 py-10 flex flex-col items-center">
+            {/* Language Switcher Fixed */}
+            <div className="fixed top-6 right-8 z-[100] no-print">
+                <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={toggleLanguage}
+                    className="flex items-center gap-2 shadow-xl bg-white/80 backdrop-blur-sm border border-gray-200 hover:bg-white transition-all"
+                >
+                    <Globe size={16} className="text-[#00468b]" />
+                    <span className="font-bold text-[#00468b] text-[11px]">
+                        {i18n.language === 'en' ? 'नेपाली' : 'English'}
+                    </span>
+                </Button>
+            </div>
 
-                    <div className="flex items-center gap-4">
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={toggleLanguage}
-                            className="flex items-center gap-2"
-                        >
-                            <Globe size={16} />
-                            {i18n.language === 'en' ? 'नेपाली' : 'English'}
-                        </Button>
-                        <div className="hidden sm:flex items-center gap-2 text-green-600 bg-green-50 px-3 py-1.5 rounded-full text-xs font-medium">
-                            <ShieldCheck size={14} />
-                            Secure Form
-                        </div>
-                    </div>
+            {/* Page Container (A4 Width Approximation) */}
+            <div className="w-full max-w-[1000px] bg-white shadow-2xl min-h-[1200px] flex flex-col overflow-hidden">
+                <div className="p-6 sm:p-10 flex-1 overflow-x-auto overflow-y-visible">
+                    {children}
                 </div>
-            </header>
 
-            {/* Main Content */}
-            <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden min-h-[600px] flex flex-col">
-                    <div className="p-8 sm:p-10 flex-1">
-                        {children}
-                    </div>
+                {/* Print Instruction */}
+                <div className="p-4 bg-gray-50 border-t border-gray-100 text-[10px] text-gray-400 text-center uppercase tracking-widest no-print">
+                    R.B.B. SECURITIES COMPANY LTD. • OFFICIAL ACCOUNT OPENING FORM
                 </div>
-            </main>
+            </div>
 
-            {/* Footer */}
-            <footer className="py-8 text-center text-gray-400 text-xs border-t border-gray-100 bg-white mt-10">
+            <footer className="mt-8 text-gray-500 text-xs text-center pb-10 no-print">
                 <p>© 2026 R.B.B. Securities Company Ltd. All rights reserved.</p>
-                <p className="mt-1">Durbarmarg, Kathmandu, Nepal</p>
             </footer>
         </div>
     );

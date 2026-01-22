@@ -13,9 +13,26 @@
             "fullName": "Full Name (In Block Letters)",
             "dob": "Date of Birth",
             "gender": "Gender",
+            "gender_options": {
+                "male": "Male",
+                "female": "Female",
+                "others": "Others"
+            },
             "nationality": "Nationality",
             "citizenshipNo": "Citizenship No.",
-            "pan": "PAN No."
+            "pan": "PAN No.",
+            "address": {
+                "current": {
+                    "country": "Country",
+                    "province": "Province",
+                    "district": "District",
+                    "municipality": "Municipality",
+                    "wardNo": "Ward No.",
+                    "tole": "Tole",
+                    "mobileNo": "Mobile No.",
+                    "email": "Email ID"
+                }
+            }
         },
         "actions": {
             "next": "Next",
