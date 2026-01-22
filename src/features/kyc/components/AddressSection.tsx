@@ -79,9 +79,9 @@ const AddressSection: React.FC<AddressSectionProps> = ({ onNext, onPrev }) => {
                 <Button variant="ghost" onClick={onPrev}>
                     {t('kyc.actions.previous')}
                 </Button>
-                <Button onClick={onNext} size="lg" className="px-12">
+                <button onClick={onNext} className="px-12 py-3 text-lg font-semibold bg-[#00468b] hover:bg-blue-900 shadow-md text-white rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 inline-flex items-center justify-center" style={{ color: 'white' }}>
                     {t('kyc.actions.next')}
-                </Button>
+                </button>
             </div>
         </div>
     );

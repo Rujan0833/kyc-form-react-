@@ -146,9 +146,43 @@ const PersonalDetailsSection: React.FC<PersonalDetailsSectionProps> = ({ onNext 
 
                 {/* Row 5: ID Details */}
                 <div className="grid grid-cols-12">
-                    <GridTableCell labelNe="नागरिकता नम्बर" labelEn="Citizenship No:" colSpan={3} />
-                    <GridTableCell labelNe="जारी जिल्ला" labelEn="Issue District" colSpan={5} />
-                    <GridTableCell labelNe="जारी मिति" labelEn="Issue Date" colSpan={4} noBorderRight />
+                    <GridTableCell labelNe="नागरिकता नम्बर" labelEn="Citizenship No:" colSpan={3} noBorderBottom />
+                    <GridTableCell labelNe="जारी जिल्ला" labelEn="Issue District" colSpan={5} noBorderBottom />
+                    <GridTableCell labelNe="जारी मिति" labelEn="Issue Date" colSpan={4} noBorderRight noBorderBottom />
+                </div>
+
+                {/* Row 5.5: ID Inputs */}
+                <div className="grid grid-cols-12">
+                    <GridTableCell colSpan={3} noBorderBottom className="p-0 flex items-center">
+                        <input {...register('personalDetails.citizenshipNo')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
+                    </GridTableCell>
+                    <GridTableCell colSpan={5} noBorderBottom className="p-0 flex items-center">
+                        <input {...register('personalDetails.issueDistrict')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
+                    </GridTableCell>
+                    <GridTableCell colSpan={4} noBorderRight noBorderBottom className="p-0 flex items-center">
+                        <Controller
+                            name="personalDetails.issueDate"
+                            control={control}
+                            render={({ field }) => (
+                                <input
+                                    type="text"
+                                    value={field.value || ''}
+                                    onChange={(e) => {
+                                        const raw = e.target.value.replace(/\D/g, '').slice(0, 8);
+                                        let formatted = raw;
+                                        if (raw.length > 4) {
+                                            formatted = raw.slice(0, 4) + '-' + raw.slice(4);
+                                        }
+                                        if (raw.length > 6) {
+                                            formatted = raw.slice(0, 4) + '-' + raw.slice(4, 6) + '-' + raw.slice(6);
+                                        }
+                                        field.onChange({ target: { value: formatted } });
+                                    }}
+                                    className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none max-w-24"
+                                />
+                            )}
+                        />
+                    </GridTableCell>
                 </div>
 
                 {/* Row 6 & 7: BOID & PAN */}
@@ -176,9 +210,22 @@ const PersonalDetailsSection: React.FC<PersonalDetailsSectionProps> = ({ onNext 
                 />
 
                 <div className="grid grid-cols-12">
-                    <GridTableCell labelNe="देश :" labelEn="Country :" colSpan={4} labelPosition="side" />
-                    <GridTableCell labelNe="प्रदेश :" labelEn="Province :" colSpan={4} labelPosition="side" />
-                    <GridTableCell labelNe="जिल्ला :" labelEn="District :" colSpan={4} noBorderRight labelPosition="side" />
+                    <GridTableCell labelNe="देश :" labelEn="Country :" colSpan={4} labelPosition="side" noBorderBottom />
+                    <GridTableCell labelNe="प्रदेश :" labelEn="Province :" colSpan={4} labelPosition="side" noBorderBottom />
+                    <GridTableCell labelNe="जिल्ला :" labelEn="District :" colSpan={4} noBorderRight labelPosition="side" noBorderBottom />
+                </div>
+
+                {/* Current Address Inputs: Country, Province, District */}
+                <div className="grid grid-cols-12">
+                    <GridTableCell colSpan={4} noBorderBottom className="p-0 flex items-center">
+                        <input {...register('address.current.country')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
+                    </GridTableCell>
+                    <GridTableCell colSpan={4} noBorderBottom className="p-0 flex items-center">
+                        <input {...register('address.current.province')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
+                    </GridTableCell>
+                    <GridTableCell colSpan={4} noBorderRight noBorderBottom className="p-0 flex items-center">
+                        <input {...register('address.current.district')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
+                    </GridTableCell>
                 </div>
 
                 <div className="grid grid-cols-12">
@@ -186,24 +233,35 @@ const PersonalDetailsSection: React.FC<PersonalDetailsSectionProps> = ({ onNext 
                         labelNe="गा.पा / न.पा / उ.म.न.पा / म.न.पा :"
                         labelEn="Rural Municipality/Municipality/ Sub Metropolitan city / Metropolitan city"
                         colSpan={9}
+                        noBorderBottom
                     />
-                    <GridTableCell labelNe="वडा नं :" labelEn="Ward No.:" colSpan={3} noBorderRight />
+                    <GridTableCell labelNe="वडा नं :" labelEn="Ward No.:" colSpan={3} noBorderRight noBorderBottom />
+                </div>
+
+                {/* Current Address Inputs: Municipality, Ward */}
+                <div className="grid grid-cols-12">
+                    <GridTableCell colSpan={9} noBorderBottom className="p-0 flex items-center">
+                        <input {...register('address.current.municipality')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
+                    </GridTableCell>
+                    <GridTableCell colSpan={3} noBorderRight noBorderBottom className="p-0 flex items-center">
+                        <input {...register('address.current.wardNo')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
+                    </GridTableCell>
                 </div>
 
                 <div className="grid grid-cols-12">
-                    <GridTableCell labelNe="टोल :" labelEn="Tole :" colSpan={6}>
-                        <CharacterInput length={15} />
+                    <GridTableCell labelNe="टोल :" labelEn="Tole :" colSpan={6} labelPosition="side" className="p-0">
+                        <input {...register('address.current.tole')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
                     </GridTableCell>
-                    <GridTableCell labelNe="टेलिफोन नं :" labelEn="Telephone No. :" colSpan={6} noBorderRight>
+                    <GridTableCell labelNe="टेलिफोन नं :" labelEn="Telephone No. :" colSpan={6} noBorderRight labelPosition="side" className="p-0">
                         <CharacterInput length={10} />
                     </GridTableCell>
                 </div>
 
                 <div className="grid grid-cols-12">
-                    <GridTableCell labelNe="ईमेल :" labelEn="Email ID :" colSpan={6}>
-                        <CharacterInput length={25} />
+                    <GridTableCell labelNe="ईमेल :" labelEn="Email ID :" colSpan={6} labelPosition="side" className="p-0">
+                        <input {...register('address.current.email')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
                     </GridTableCell>
-                    <GridTableCell labelNe="मोबाइल नं. :" labelEn="Mobile No. :" colSpan={6} noBorderRight>
+                    <GridTableCell labelNe="मोबाइल नं. :" labelEn="Mobile No. :" colSpan={6} noBorderRight labelPosition="side" className="p-0">
                         <CharacterInput length={10} />
                     </GridTableCell>
                 </div>
@@ -218,9 +276,22 @@ const PersonalDetailsSection: React.FC<PersonalDetailsSectionProps> = ({ onNext 
                 />
 
                 <div className="grid grid-cols-12">
-                    <GridTableCell labelNe="देश :" labelEn="Country :" colSpan={4} labelPosition="side" />
-                    <GridTableCell labelNe="प्रदेश :" labelEn="Province :" colSpan={4} labelPosition="side" />
-                    <GridTableCell labelNe="जिल्ला :" labelEn="District :" colSpan={4} noBorderRight labelPosition="side" />
+                    <GridTableCell labelNe="देश :" labelEn="Country :" colSpan={4} labelPosition="side" noBorderBottom />
+                    <GridTableCell labelNe="प्रदेश :" labelEn="Province :" colSpan={4} labelPosition="side" noBorderBottom />
+                    <GridTableCell labelNe="जिल्ला :" labelEn="District :" colSpan={4} noBorderRight labelPosition="side" noBorderBottom />
+                </div>
+
+                {/* Permanent Address Inputs: Country, Province, District */}
+                <div className="grid grid-cols-12">
+                    <GridTableCell colSpan={4} noBorderBottom className="p-0 flex items-center">
+                        <input {...register('address.permanent.country')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
+                    </GridTableCell>
+                    <GridTableCell colSpan={4} noBorderBottom className="p-0 flex items-center">
+                        <input {...register('address.permanent.province')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
+                    </GridTableCell>
+                    <GridTableCell colSpan={4} noBorderRight noBorderBottom className="p-0 flex items-center">
+                        <input {...register('address.permanent.district')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
+                    </GridTableCell>
                 </div>
 
                 <div className="grid grid-cols-12">
@@ -228,24 +299,35 @@ const PersonalDetailsSection: React.FC<PersonalDetailsSectionProps> = ({ onNext 
                         labelNe="गा.पा / न.पा / उ.म.न.पा / म.न.पा :"
                         labelEn="Rural Municipality/Municipality/ Sub Metropolitan city / Metropolitan city"
                         colSpan={9}
+                        noBorderBottom
                     />
-                    <GridTableCell labelNe="वडा नं :" labelEn="Ward No.:" colSpan={3} noBorderRight />
+                    <GridTableCell labelNe="वडा नं :" labelEn="Ward No.:" colSpan={3} noBorderRight noBorderBottom />
+                </div>
+
+                {/* Permanent Address Inputs: Municipality, Ward */}
+                <div className="grid grid-cols-12">
+                    <GridTableCell colSpan={9} noBorderBottom className="p-0 flex items-center">
+                        <input {...register('address.permanent.municipality')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
+                    </GridTableCell>
+                    <GridTableCell colSpan={3} noBorderRight noBorderBottom className="p-0 flex items-center">
+                        <input {...register('address.permanent.wardNo')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
+                    </GridTableCell>
                 </div>
 
                 <div className="grid grid-cols-12">
-                    <GridTableCell labelNe="टोल :" labelEn="Tole :" colSpan={6}>
-                        <CharacterInput length={15} />
+                    <GridTableCell labelNe="टोल :" labelEn="Tole :" colSpan={6} labelPosition="side" className="p-0">
+                        <input {...register('address.permanent.tole')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
                     </GridTableCell>
-                    <GridTableCell labelNe="टेलिफोन नं :" labelEn="Telephone No. :" colSpan={6} noBorderRight>
+                    <GridTableCell labelNe="टेलिफोन नं :" labelEn="Telephone No. :" colSpan={6} noBorderRight labelPosition="side" className="p-0">
                         <CharacterInput length={10} />
                     </GridTableCell>
                 </div>
 
                 <div className="grid grid-cols-12">
-                    <GridTableCell labelNe="ईमेल :" labelEn="Email ID :" colSpan={6}>
-                        <CharacterInput length={25} />
+                    <GridTableCell labelNe="ईमेल :" labelEn="Email ID :" colSpan={6} labelPosition="side" className="p-0">
+                        <input {...register('address.permanent.email')} className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none" />
                     </GridTableCell>
-                    <GridTableCell labelNe="मोबाइल नं. :" labelEn="Mobile No. :" colSpan={6} noBorderRight>
+                    <GridTableCell labelNe="मोबाइल नं. :" labelEn="Mobile No. :" colSpan={6} noBorderRight labelPosition="side" className="p-0">
                         <CharacterInput length={10} />
                     </GridTableCell>
                 </div>
@@ -254,9 +336,9 @@ const PersonalDetailsSection: React.FC<PersonalDetailsSectionProps> = ({ onNext 
 
             {/* Navigation - Hidden for Print */}
             <div className="mt-12 pt-6 border-t border-gray-100 flex justify-end no-print">
-                <Button onClick={onNext} size="lg" className="w-full sm:w-auto px-12 bg-[#00468b] hover:bg-blue-900 shadow-md">
+                <button onClick={onNext} className="w-full sm:w-auto px-12 py-3 text-lg font-semibold bg-[#00468b] hover:bg-blue-900 shadow-md text-white rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 inline-flex items-center justify-center" style={{ color: 'white' }}>
                     {t('kyc.actions.next')}
-                </Button>
+                </button>
             </div>
         </div>
     );

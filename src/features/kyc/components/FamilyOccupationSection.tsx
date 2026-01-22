@@ -132,9 +132,9 @@ const FamilyOccupationSection: React.FC<FamilyOccupationSectionProps> = ({ onNex
                 <Button variant="ghost" onClick={onPrev} className="px-8 text-[#00468b] font-bold hover:bg-blue-50">
                     {t('kyc.actions.previous')}
                 </Button>
-                <Button onClick={onNext} size="lg" className="min-w-[140px] px-12 bg-[#00468b] hover:bg-blue-900 shadow-md">
+                <button onClick={onNext} className="min-w-[140px] px-12 py-3 text-lg font-semibold bg-[#00468b] hover:bg-blue-900 shadow-md text-white rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 inline-flex items-center justify-center" style={{ color: 'white' }}>
                     {t('kyc.actions.next')}
-                </Button>
+                </button>
             </div>
         </div>
     );
