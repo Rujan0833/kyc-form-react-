@@ -34,7 +34,10 @@ const CharacterInput: React.FC<CharacterInputProps> = ({
                     {labelEn && <span className="text-gray-500 font-medium italic">{labelEn} :</span>}
                 </div>
             )}
-            <div className="flex flex-row gap-0 border-l border-t border-b border-gray-400 w-fit max-w-full overflow-x-auto bg-white">
+            <div
+                className="grid border-l border-t border-b border-gray-400 w-full bg-white"
+                style={{ gridTemplateColumns: `repeat(${length}, 1fr)` }}
+            >
                 {Array.from({ length }).map((_, i) => (
                     <input
                         key={i}
@@ -42,7 +45,7 @@ const CharacterInput: React.FC<CharacterInputProps> = ({
                         maxLength={1}
                         value={chars[i] === ' ' ? '' : chars[i]}
                         onChange={(e) => handleChange(i, e.target.value)}
-                        className="w-4 h-5 flex-shrink-0 border-r border-gray-400 text-center text-[10px] font-mono font-bold focus:bg-blue-50 focus:outline-none uppercase bg-white"
+                        className="w-full h-5 flex-shrink-0 border-r border-gray-400 text-center text-[10px] font-mono font-bold focus:bg-blue-50 focus:outline-none uppercase bg-white"
                     />
                 ))}
             </div>

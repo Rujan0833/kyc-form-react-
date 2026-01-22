@@ -30,7 +30,7 @@ const AddressSection: React.FC<AddressSectionProps> = ({ onNext, onPrev }) => {
             <div className="space-y-8">
                 {/* Current Address */}
                 <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 border-l-4 border-blue-600 pl-3">
+                    <h3 className="text-lg font-semibold text-white mb-4 border-l-4 border-blue-600 pl-3">
                         Current Address (हालको ठेगाना)
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">

@@ -41,7 +41,7 @@ const GridTableCell: React.FC<GridTableCellProps> = ({
                 'p-1.5 flex flex-col justify-start border-gray-400',
                 !noBorderRight && 'border-r',
                 !noBorderBottom && 'border-b',
-                isHeader && 'bg-[#00468b] !text-white font-bold text-xs py-1.5',
+                isHeader && 'bg-[#00468b] text-white !text-white font-bold text-xs py-1.5',
                 className
             )}
         >
@@ -50,8 +50,22 @@ const GridTableCell: React.FC<GridTableCellProps> = ({
                     'flex mb-1',
                     labelPosition === 'top' ? 'flex-col' : 'flex-row gap-2 items-center'
                 )}>
-                    {labelNe && <span className={cn('text-[10px] font-bold leading-tight', isHeader ? '!text-white' : 'text-gray-900')}>{labelNe}</span>}
-                    {labelEn && <span className={cn('text-[9px] italic leading-tight', isHeader ? '!text-white' : 'text-gray-500')}>{labelEn}</span>}
+                    {labelNe && (
+                        <span
+                            className={cn('text-[10px] font-bold leading-tight', isHeader ? 'text-white' : 'text-gray-900')}
+                            style={isHeader ? { color: 'white' } : {}}
+                        >
+                            {labelNe}
+                        </span>
+                    )}
+                    {labelEn && (
+                        <span
+                            className={cn('text-[9px] italic leading-tight', isHeader ? 'text-white' : 'text-gray-500')}
+                            style={isHeader ? { color: 'white' } : {}}
+                        >
+                            {labelEn}
+                        </span>
+                    )}
                 </div>
             )}
             <div className="flex-1 w-full">

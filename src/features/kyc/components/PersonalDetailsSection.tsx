@@ -31,9 +31,21 @@ const PersonalDetailsSection: React.FC<PersonalDetailsSectionProps> = ({ onNext 
                     className="bg-[#00468b] !text-white text-center"
                 />
 
-                {/* Row 1: Name */}
+                {/* Row 1: Name (Nepali - Normal) */}
+                <div className="grid grid-cols-12 border-b border-gray-400">
+                    <GridTableCell labelNe="नाम" colSpan={3} noBorderBottom />
+                    <GridTableCell colSpan={9} noBorderRight noBorderBottom className="flex items-center p-0">
+                        <input
+                            type="text"
+                            {...register('personalDetails.fullName')}
+                            className="w-full h-full px-2 text-xs font-bold focus:bg-blue-50 focus:outline-none"
+                        />
+                    </GridTableCell>
+                </div>
+
+                {/* Row 2: Name (English - Block Letters) */}
                 <div className="grid grid-cols-12">
-                    <GridTableCell labelNe="नाम" labelEn="Name (In Block Letter)" colSpan={3} />
+                    <GridTableCell labelEn="Name (In Block Letter)" colSpan={3} />
                     <GridTableCell colSpan={9} noBorderRight className="p-0">
                         <Controller
                             name="personalDetails.fullName"

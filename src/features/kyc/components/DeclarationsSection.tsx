@@ -82,8 +82,11 @@ const DeclarationsSection: React.FC<DeclarationsSectionProps> = ({ onNext, onPre
             </div>
 
             {/* OFFICIAL USE ONLY REPEAT */}
-            <div className="bg-[#da291c] text-white py-1.5 px-4 text-center mb-0 border border-red-800">
-                <h4 className="text-sm font-bold leading-tight uppercase !text-white">
+            <div
+                className="bg-[#da291c] py-1.5 px-4 text-center mb-0 border border-red-800"
+                style={{ backgroundColor: '#da291c', color: 'white' }}
+            >
+                <h4 className="text-sm font-bold leading-tight uppercase" style={{ color: 'white' }}>
                     कार्यालय प्रयोजनका लागि मात्र (For Official Use Only)
                 </h4>
             </div>

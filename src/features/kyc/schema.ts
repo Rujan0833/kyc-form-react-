@@ -50,11 +50,17 @@ export const kycSchema = z.object({
         bankName: z.string().min(1, 'Bank name is required'),
     }),
     transactionInfo: z.object({
-        incomeSources: z.record(z.boolean()),
+        incomeSources: z.record(z.string(), z.boolean()),
         otherBroker: z.enum(['yes', 'no']),
         blacklisted: z.enum(['yes', 'no']),
     }).optional(),
-    amlQuestions: z.array(z.enum(['yes', 'no'])).optional(),
+    amlQuestions: z.record(z.string(), z.boolean()).optional(),
+    officialUse: z.object({
+        accountNo: z.string().optional(),
+        date: z.string().optional(),
+        referenceNo: z.string().optional(),
+        sanctionNo: z.string().optional(),
+    }).optional(),
     documents: z.object({
         photo: z.string().min(1, 'Passport photo is required'),
         citizenshipFront: z.string().min(1, 'Citizenship Front image is required'),
